@@ -54,4 +54,8 @@ setInterval(() => {
     task && task()
     microTasks.forEach( task => task())
     microTasks = []
-}, 100)
+}, 0)
+// 同步任务
+// { message: 'hello' }
+// promise1
+// promise2

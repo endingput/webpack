@@ -31,4 +31,4 @@ getData()
 setInterval(() => {
     const task = tasks.shift()
     task && task()
-}, 100)
+}, 0)

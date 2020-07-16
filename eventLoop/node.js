@@ -1,4 +1,4 @@
-let fs = require('fs');
+const fs = require('fs');
 const path = require('path')
 setTimeout(() => {
     console.log('1');
@@ -34,7 +34,6 @@ setTimeout(() => {
     });
     console.log('4');
 }, 1000);
-// 1 2 3 4 setImmediate1 nextTick1 setImmediate2 nextTick2 setTimeout1 nextTick3 nextTick4 setTimeout2   a  setImmediate_a setTimeout_a end_a
 // 1
 // 2
 // 3
