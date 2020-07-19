@@ -192,20 +192,14 @@
   var parentJsonpFunction = oldJsonpFunction;
 
   // Load entry module and return exports
-  return __webpack_require__(__webpack_require__.s = "./src/index.js");
+  return __webpack_require__(__webpack_require__.s = "./src/entry1.js");
 })
   ({
     
-         "./src/index.js":(function (module, exports, __webpack_require__) {
-          __webpack_require__("./src/index.less");
-         }),
-         
-         "./src/index.less":(function (module, exports, __webpack_require__) {
-          
-let style = document.createElement("style");
-style.innerHTML = "body {\n  background-color: red;\n}\n";
-document.head.appendChild(style);
-module.exports = "";
+         "./src/entry1.js":(function (module, exports, __webpack_require__) {
+          let title = __webpack_require__("./src/title.js");
+let _ = __webpack_require__("./node_modules/_lodash@4.17.19@lodash/lodash.js");
+console.log(_.upperCase(title));
          }),
          
   });

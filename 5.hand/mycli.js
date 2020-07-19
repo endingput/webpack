@@ -1,7 +1,6 @@
 const webpack = require('./webpack');
 const options = require('./webpack.config');
 const compiler = webpack(options);
-debugger
 compiler.run((err,stats)=>{
     console.log(err);
     let json = stats.toJson({
@@ -11,5 +10,5 @@ compiler.run((err,stats)=>{
         _modules:true,//以对象的方式放置模块
         assets:true//产出的文件或者资源
     });
-    console.log(JSON.stringify(json,null,2));
+    console.log(json);
 });

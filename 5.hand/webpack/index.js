@@ -9,7 +9,7 @@ function webpack(options){
     //合并compiler默认参数对象和用户传进来的配置文件进行合并
     compiler.options = Object.assign(compiler.options,options);
     //在webpack打包过程中可能会读文件和写文件 用哪个模块读写 fs,在热更新的时候, webpack-dev-server memory-fs
-    new NodeEnvironmentPlugin().apply(compiler);
+    new NodeEnvironmentPlugin().apply(compiler);//fs
     //挂载配置文件里配置的所有的plugins
     if(options.plugins && Array.isArray(options.plugins)){
         for(const plugin of options.plugins){

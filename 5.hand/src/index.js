@@ -1,2 +1,1 @@
-let title = require('./title');
-console.log(title);
+require('./index.less');
