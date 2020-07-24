@@ -2,24 +2,20 @@
 const path = require('path');
 let webpack = require('webpack');
 let  HtmlWebpackPlugin= require('html-webpack-plugin');
-/* let TerserWebpackPlugin = require('terser-webpack-plugin');
+let TerserWebpackPlugin = require('terser-webpack-plugin');
 let OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
-const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin') 
-const SpeedMeasureWebpackPlugin = require('speed-measure-webpack-plugin');*/;
-//const smv = new SpeedMeasureWebpackPlugin();
-//const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const glob = require("glob");
-const PurgecssPlugin = require("purgecss-webpack-plugin");
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
+const SpeedMeasureWebpackPlugin = require('speed-measure-webpack-plugin');
+const smv = new SpeedMeasureWebpackPlugin();
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 //child_process
 module.exports = {
   mode: 'development',
   entry:'./src/index.js',
   devtool:false,
   output:{
-   // library:'calculator',//指定导出库的名称
-   // libraryTarget:'global' //以何种方式导出给别人用 别人只能以全局变量方式引入
-    ///commonjs2的话就library没有意义了
+    library:'calculator',//指定导出库的名称
+    libraryTarget:'var' //以何种方式导出给别人用
   },
   //配置优化策略
  /*  optimization:{
@@ -63,26 +59,10 @@ module.exports = {
                   }
               }
           ]
-        },
-        {
-          test:/\.css/,
-          include:path.resolve(__dirname,'src'),
-          exclude:/node_modules/,
-          use:[
-            {
-              loader:MiniCssExtractPlugin.loader},
-             'css-loader'
-          ]
         }
       ]
   },
   plugins: [
-    new MiniCssExtractPlugin({
-      filename:'css/[name].[hash].css'
-    }),
-    new PurgecssPlugin({
-      paths:glob.sync(`${path.resolve(__dirname,'src')}/**/*`)
-    }),
     new webpack.DefinePlugin({
       PRODUCTION:JSON.stringify(true),//转成字符串
       VERSION:"1",
@@ -96,10 +76,10 @@ module.exports = {
     }),
     //忽略掉moment模块中的locale目录
     //new webpack.IgnorePlugin(/\.\/locale/,/moment$/),
-   /*  new FriendlyErrorsWebpackPlugin(),
+    new FriendlyErrorsWebpackPlugin(),
     new BundleAnalyzerPlugin({
       analyzerMode:'disabled',//默认会打开一个网站,如果不想打开,可以设置禁 用
       generateStatsFile:true//是否生成stats.json文件
-    }) */
+    })
   ]
 }
