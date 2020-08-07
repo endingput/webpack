@@ -13,3 +13,9 @@ polyfill babel-polyfill
 babel runtime
 corejs3 buintin
 .babelrc  presets @babel/preset-env  {}
+
+## treeshaking 哪些会被优化掉
+1. 没有导入或使用
+2. 代码不可达,不会被执行
+3. 代码结果没有人用
+4. 那些只写不读的变量
