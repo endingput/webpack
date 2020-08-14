@@ -4,4 +4,4 @@ const compiler = webpack(webpackOptions);
 debugger
 compiler.run((err, stats) => {
   console.log(err);
-}); 
+});
