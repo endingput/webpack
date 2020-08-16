@@ -1,23 +1,26 @@
-
 let jszip = require('jszip');
 let path = require('path');
-let {RawSource} = require('webpack-sources');
-class Plugin{
-    constructor(options){
+let {
+    RawSource
+} = require('webpack-sources');
+class Plugin {
+    constructor(options) {
         this.options = options;
     }
-    apply(compiler){
+    apply(compiler) {
         let that = this;
-        compiler.hooks.emit.tapAsync('ZipPlugin',(compilation,callback)=>{
+        compiler.hooks.emit.tapAsync('ZipPlugin', (compilation, callback) => {
             let zip = new jszip();
             //compilation.assets里面放着将出产出的所有的资源,包括文件名和文件内容 
-            for(let filename in compilation.assets){
-                let source = compilation.assets[filename].source();//可以得到此文件源码
-                zip.file(filename,source);//往压缩包里放文件,文件名1.txt 文件内容 2
+            for (let filename in compilation.assets) {
+                let source = compilation.assets[filename].source(); //可以得到此文件源码
+                zip.file(filename, source); //往压缩包里放文件,文件名1.txt 文件内容 2
             }
             //emit是件是你修改产出文件的最后机会 emit就是在写入dist目录之前执行的最后一个钩子
-            zip.generateAsync({type:'nodebuffer'}).then(content=>{
-                compilation.assets[that.options.filename]=new RawSource(content);
+            zip.generateAsync({
+                type: 'nodebuffer'
+            }).then(content => {
+                compilation.assets[that.options.filename] = new RawSource(content);
                 callback();
                 /* compilation.assets[that.options.filename]={
                     source(){
