@@ -6,21 +6,36 @@ module.exports = {
     devtool: false,
     entry: './src/index.js',
     output: {
-        path: path.resolve(__dirname, 'a', 'dist'),
+        path: path.resolve(__dirname, 'dist'),
         filename: 'main.js',
-        publicPath: '/assets'
+        publicPath: '/'
     },
     module: {
-        rules: [{
-            test: /\.txt$/,
-            use: 'raw-loader'
-        }]
+        rules: [
+            {
+                test: /\.txt$/,
+                use: 'raw-loader'
+            },
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader']
+            },
+            {
+                test: /\.less$/,
+                use: ['style-loader', 'css-loader', 'less-loader']
+            },
+            {
+                test: /\.scss$/,
+                use: ['style-loader', 'css-loader', 'sass-loader']
+            }
+        ]
     },
     devServer: {
         contentBase: resolve(__dirname, 'static'),
         compress: true, // 是否启动压缩
         port: 8080,
-        writeToDisk: true,
+        // writeToDisk: true,
+        publicPath: '/'
     },
     plugins: [
         new HtmlWebpackPlugin({
