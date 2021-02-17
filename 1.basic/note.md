@@ -14,3 +14,12 @@
 
 ## webpack-dev-server
 - 使用的是内存文件系统memory-fs
+# 引入图片的方式
+1. 将图片放入静态资源根目录中 配置contentBase
+2. 通过require/import方式引入
+3. 在css中引入，由css-loader处理
+4. 在html中img标签src相对路径引入，通过html-loader处理
+
+# file-loader
+1. 拷贝图片
+2. 将图片模块转化成js模块
